@@ -104,4 +104,5 @@ int main(int const argc, char **const argv) {
     /**
      * Remember to free dynamically allocated memory when it is no longer used!
      */
+    return(0);
 }
