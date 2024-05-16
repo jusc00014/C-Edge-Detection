@@ -179,12 +179,36 @@ void write_image_to_file(const float *img, int w, int h, const char *filename) {
     (void)h;
     (void)filename;
 
-    // TODO: Implement me!
+    FILE *data;
+    data = fopen(filename, "w");
+    if (data == NULL)
+    {
+        return;
+    }
+    char y[2] = {'P', '2'};
+    fprintf(data, "%s ", y);
+    char z = '\n';
+    fprintf(data, "%c", z);
+    fprintf(data, "%d ", w);
+    fprintf(data, "%c", z);
+    fprintf(data, "%d ", h);
+    fprintf(data, "%c", z);
+    fprintf(data, "%d ", 255);
+    fprintf(data, "%c", z);
+    for (int i = 0; i < h; i++)
+    {
+        for (int j = 0; j < w; j++)
+        {
+            fprintf(data, "%d ", (int)(img[j+i*w]));
+        }
+        fprintf(data, "%c", z);
+    }
+    fclose(data);
+    return;
 }
 
 
 
-//Müssen die vorher deklariert werden?
 float maxi(const float *img, int wh)
 {
     float k = 0;
