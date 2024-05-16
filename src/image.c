@@ -33,7 +33,7 @@ void scale_image(float *result, const float *img, int w, int h) {
     min = mini(img, k);
     l = (max - min);
     scale = 255/l;
-    printf("%f\n", scale);
+//    printf("%f\n", scale);
     if (l)
     {
         for(int i = 0; i<k; i++)
