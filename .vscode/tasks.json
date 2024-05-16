@@ -1,6 +1,4 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
     "version": "2.0.0",
     "tasks": [
         {
@@ -8,13 +6,10 @@
             "type": "shell",
             "command": "make",
             "args": [],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
+            "group": "build",
             "problemMatcher": [],
             "presentation": {
-                "echo" : false,
+                "echo": false,
                 "showReuseMessage": false
             }
         },
@@ -27,10 +22,10 @@
             ],
             "group": "test",
             "presentation": {
-                "echo" : false,
+                "echo": false,
                 "showReuseMessage": false
             },
-            "dependsOn" : "make"
+            "dependsOn": "make"
         },
         {
             "label": "test/run-tests.py -l",
@@ -42,7 +37,7 @@
             ],
             "group": "test",
             "presentation": {
-                "echo" : false,
+                "echo": false,
                 "showReuseMessage": false
             }
         },
@@ -57,17 +52,40 @@
             ],
             "group": "test",
             "presentation": {
-                "echo" : false,
+                "echo": false,
                 "showReuseMessage": false
             },
-            "dependsOn" : "make"
+            "dependsOn": "make"
+        },
+        {
+            "type": "cppbuild",
+            "label": "C/C++: gcc Aktive Datei kompilieren",
+            "command": "/usr/bin/gcc",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Vom Debugger generierte Aufgabe."
         }
     ],
     "inputs": [
         {
             "id": "test_case",
             "type": "promptString",
-            "description" : "Geben Sie den Namen des Tests ein."
+            "description": "Geben Sie den Namen des Tests ein."
         }
     ]
 }
