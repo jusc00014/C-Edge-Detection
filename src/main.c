@@ -43,10 +43,15 @@ int main(int const argc, char **const argv) {
      */
     // TODO: Implement me!
 
+    int u = w*h;
     float *result;
-    result = array_init(w*h);
+    result = array_init(u);
+    if (result == NULL)
+    {
+        return(1);
+    }
     const char filename[13] = {'o', 'u', 't', '_', 'b', 'l', 'u', 'r', '.', 'p', 'g', 'm', '\0'};
-    convolve (result, img,w,h, gaussian_k, gaussian_w, gaussian_h);
+    convolve (result, img, w, h, gaussian_k, gaussian_w, gaussian_h);
     array_destroy(img);
     write_image_to_file(result,w,h, filename);
 
@@ -61,10 +66,26 @@ int main(int const argc, char **const argv) {
     float *x_dev, *y_dev, *x_rescal, *y_rescal;
     const char filex[12] = {'o', 'u', 't', '_', 'd', '_', 'x', '.', 'p', 'g', 'm', '\0'};
     const char filey[12] = {'o', 'u', 't', '_', 'd', '_', 'y', '.', 'p', 'g', 'm', '\0'};
-    x_rescal = array_init(w*h);
-    y_rescal = array_init(w*h);
-    x_dev = array_init(w*h);
-    y_dev = array_init(w*h);
+    x_rescal = array_init(u);
+    if (x_rescal == NULL)
+    {
+        return(1);
+    }
+    y_rescal = array_init(u);
+    if (y_rescal == NULL)
+    {
+        return(1);
+    }
+    x_dev = array_init(u);
+    if (x_dev == NULL)
+    {
+        return(1);
+    }
+    y_dev = array_init(u);
+    if (y_dev == NULL)
+    {
+        return(1);
+    }
     derivation_x_direction(x_dev, result,w,h);
     derivation_y_direction(y_dev, result,w,h);
     scale_image(x_rescal, x_dev,w,h);
@@ -84,7 +105,11 @@ int main(int const argc, char **const argv) {
 
     gradient_magnitude(result, x_dev, y_dev,w,h);
     float *res;
-    res = array_init(w*h);
+    res = array_init(u);
+    if (res == NULL)
+    {
+        return(1);
+    }
     scale_image(res, result,w,h);
     const char filegm[11] = {'o', 'u', 't', '_', 'g', 'm', '.', 'p', 'g', 'm', '\0'};
     write_image_to_file(res,w,h, filegm);
