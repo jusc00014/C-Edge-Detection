@@ -211,6 +211,8 @@ void write_image_to_file(const float *img, int w, int h, const char *filename) {
 
 float maxi(const float *img, int wh)
 {
+    (void)img;
+    (void)wh;
     float k = 0;
     for(int i = 0; i < wh; i++)
     {
@@ -224,6 +226,8 @@ float maxi(const float *img, int wh)
 
 float mini(const float *img, int wh)
 {
+    (void)img;
+    (void)wh;
     float k = 255;
     for(int i = 0; i < wh; i++)
     {
