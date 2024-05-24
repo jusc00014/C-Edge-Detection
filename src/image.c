@@ -17,7 +17,7 @@ void apply_threshold(float *img, int w, int h, int T) {
     (void)T;
     for (int i = 0; i < w*h; i++)
     {
-        img[i] = (img[i] > T)*255;
+        img[i] = (img[i] > T)*255.0f;
     }
     return;
 }
@@ -27,12 +27,12 @@ void scale_image(float *result, const float *img, int w, int h) {
     (void)img;
     (void)w;
     (void)h;
-    float max = 0.0, min = 0.0, scale, l;
+    float max = 0.0f, min = 255.0f, scale, l;
     int k = w*h;
     max = maxi(img, k);
     min = mini(img, k);
     l = (max - min);
-    scale = 255/l;
+    scale = 255.0f/l;
 //    printf("%f\n", scale);
     if (l)
     {
@@ -45,7 +45,7 @@ void scale_image(float *result, const float *img, int w, int h) {
     {
          for(int i = 0; i<k; i++)
         {
-            result[i] = 0;
+            result[i] = 0.0f;
         }
     }
     return;
@@ -137,7 +137,7 @@ float *read_image_from_file(const char *filename, int *w, int *h) {
         fclose(data);
         return(NULL);
     }
-    if (k < 0 || k > 255)
+    if (k < 0.0f || k > 255.0f)
     {
         fclose(data);
         return(NULL);
@@ -157,7 +157,7 @@ float *read_image_from_file(const char *filename, int *w, int *h) {
                 fclose(data);
                 return(NULL);
             }
-            if (0 > x[i] || 255 < x[i])
+            if (0.0f > x[i] || 255.0f < x[i])
             {
                 array_destroy(x);
                 fclose(data);
@@ -228,7 +228,7 @@ float mini(const float *img, int wh)
 {
     (void)img;
     (void)wh;
-    float k = 255;
+    float k = 255.0f;
     for(int i = 0; i < wh; i++)
     {
         if (k > img[i])

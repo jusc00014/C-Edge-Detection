@@ -20,7 +20,7 @@ void convolve(float *result, const float *img, int w, int h,
     {
         for (int j = 0; j < h; j++)
         {
-            float sum = 0;
+            float sum = 0.0f;
             int t = 0; 
             for (int l = (j-n); l < (j+n+1); l++)
             {
